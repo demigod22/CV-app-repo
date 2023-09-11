@@ -22,7 +22,8 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        return false;
+        Navigator.pop(context, widget.value);
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
