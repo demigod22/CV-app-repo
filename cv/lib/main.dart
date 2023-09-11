@@ -7,7 +7,7 @@ void main() {
   runApp(const MyApp());
 }
 
-String? fullName = 'Title';
+String? fullName = 'Dikko Abidemi Olatunji';
 String? slackUserName = 'demigod';
 String? githubHandle = 'demigod22';
 String? myBio =
