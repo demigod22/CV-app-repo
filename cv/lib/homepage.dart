@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 )
                     .then((value) {
                   setState(() {
-                    fullName = value;
+                    fullName = value??'';
                   });
                 });
               },
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 )
                     .then((value) {
                   setState(() {
-                    slackUserName = value;
+                    slackUserName = value??'';
                   });
                 });
               },
@@ -71,14 +71,15 @@ class _HomePageState extends State<HomePage> {
                 ))
                     .then((value) {
                   setState(() {
-                    githubHandle = value;
+                    githubHandle = value??'';
                   });
                 });
               },
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                 margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                     border: Border.all(
@@ -86,57 +87,58 @@ class _HomePageState extends State<HomePage> {
                       width: 3,
                     ),
                     borderRadius: BorderRadius.circular(10)),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.book,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.book,
+                          color: Color.fromARGB(255, 33, 117, 243),
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Input Your Bio Here',
+                          style: TextStyle(
                             color: Color.fromARGB(255, 33, 117, 243),
+                            fontSize: 18,
                           ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            'Input Your Bio Here',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 33, 117, 243),
-                              fontSize: 18,
-                            ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(
-                                  builder: (context) => EditPage(value: myBio!),
-                                ))
-                                    .then((value) {
-                                  setState(() {
-                                    myBio = value;
-                                  });
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.edit,
-                                color: Color.fromARGB(255, 33, 117, 243),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(
+                                builder: (context) => EditPage(value: myBio??''),
                               ))
+                                  .then((value) {
+                                setState(() {
+                                  myBio = value??'';
+                                });
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.edit,
+                              color: Color.fromARGB(255, 33, 117, 243),
+                            ))
+                      ],
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 240,
+                      margin: const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.all(10),
+                      color: Colors.grey[100],
+                      child: ListView(
+                        children: [
+                          Text(
+                            myBio ?? '',
+                            softWrap: true,
+                          ),
                         ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        // height: double.minPositive,
-                        margin: const EdgeInsets.only(top: 10),
-                        padding: const EdgeInsets.only(
-                            top: 10, left: 10, right: 10, bottom: 20),
-                        color: Colors.grey[100],
-                        child: Text(
-                          myBio ?? '',
-                          softWrap: true,
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
             )
